@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rate_flow/app/home.dart';
+import 'package:rate_flow/app/app_routes_name.dart';
 
 class CurrencyCard extends StatelessWidget {
   const CurrencyCard({super.key, required this.index, this.subtitle});
@@ -12,7 +11,9 @@ class CurrencyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<HomeCubit>().openCurrency('Австралийский доллар');
+        Navigator.of(
+          context,
+        ).pushNamed(AppRoutesName.currency, arguments: 'Австралийский доллар');
       },
       child: Card(
         margin: EdgeInsets.zero,

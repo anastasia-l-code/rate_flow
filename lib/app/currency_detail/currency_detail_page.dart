@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rate_flow/app/home.dart';
 import 'package:rate_flow/app/currency_detail/widgets/currency_info_card.dart';
 
 class CurrencyDetailPage extends StatelessWidget {
@@ -19,7 +17,7 @@ class CurrencyDetailPage extends StatelessWidget {
         titleSpacing: _titleSpacing,
         leading: IconButton(
           onPressed: () {
-            context.read<HomeCubit>().closeCurrency();
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back),
         ),

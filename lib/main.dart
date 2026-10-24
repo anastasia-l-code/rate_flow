@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rate_flow/app/home.dart';
+import 'package:rate_flow/app/app_routes_name.dart';
+import 'package:rate_flow/app/currency_detail/currency_detail_page.dart';
+import 'package:rate_flow/app/settings/settings_page.dart';
+import 'package:rate_flow/app/settings/send_text.dart';
 
 void main() {
   runApp(const App());
@@ -43,7 +47,18 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: HomePage(),
+
+      initialRoute: AppRoutesName.main,
+      routes: {
+        AppRoutesName.main: (_) => const HomePage(),
+        AppRoutesName.settings: (_) => const SettingsPage(),
+        AppRoutesName.sendText: (_) => const SendTextPage(),
+        AppRoutesName.currency: (context) {
+          final title =
+              ModalRoute.of(context)!.settings.arguments as String? ?? 'Валюта';
+          return CurrencyDetailPage(title: title);
+        },
+      },
     );
   }
 }
