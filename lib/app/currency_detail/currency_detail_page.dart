@@ -21,6 +21,15 @@ class CurrencyDetailPage extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back),
         ),
+        actions: [
+          IconButton(
+            tooltip: 'На главный экран',
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          ),
+        ],
         title: Text(title),
       ),
       body: Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rate_flow/app/news_list/widgets/news_card.dart';
+import 'package:rate_flow/app/app_routes_name.dart';
 
 class NewsListPage extends StatelessWidget {
   const NewsListPage({super.key});
@@ -7,7 +8,18 @@ class NewsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Новости')),
+      appBar: AppBar(
+        title: const Text('Новости'),
+        actions: [
+          IconButton(
+            tooltip: 'Настройки',
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutesName.settings);
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(22, 16, 22, 40),
         child: Column(

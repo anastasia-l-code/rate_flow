@@ -52,12 +52,25 @@ class App extends StatelessWidget {
       routes: {
         AppRoutesName.main: (_) => const HomePage(),
         AppRoutesName.settings: (_) => const SettingsPage(),
-        AppRoutesName.sendText: (_) => const SendTextPage(),
         AppRoutesName.currency: (context) {
           final title =
               ModalRoute.of(context)!.settings.arguments as String? ?? 'Валюта';
           return CurrencyDetailPage(title: title);
         },
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name != AppRoutesName.sendText) return null;
+        final text = settings.arguments as String? ?? '';
+        return PageRouteBuilder<String>(
+          settings: settings,
+          transitionDuration: const Duration(milliseconds: 500),
+          reverseTransitionDuration: const Duration(milliseconds: 500),
+          pageBuilder: (_, animation, secondaryAnimation) =>
+              SendTextPage(initialText: text),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
       },
     );
   }
